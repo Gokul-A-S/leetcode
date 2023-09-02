@@ -2,12 +2,11 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if(len(s)!=len(t)):
             return False
-        for letter in s:
-            if letter in t:
-                t=t.replace(letter,'',1)
-            else:
+        hashMap=defaultdict(int)
+        for char in s:
+            hashMap[char]+=1
+        for char in t:
+            if(hashMap[char]==0):
                 return False
-        if(t==''):
-            return True
-        else:
-            return False
+            hashMap[char]-=1
+        return True
